@@ -6,7 +6,7 @@
   <style>
     body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
     h1 { text-align: center; }
-    .post { margin-bottom: 30px; }
+    .post { margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #ddd; }
     .post-title { font-size: 1.5em; margin-bottom: 5px; }
     .post-date { color: #555; font-size: 0.9em; margin-bottom: 10px; }
     .post-content { white-space: pre-wrap; }
@@ -23,34 +23,27 @@
       const postsContainer = document.getElementById('blog-posts');
 
       try {
-        // List all Markdown files in content/blog/
-        const files = [
-          "test-run.md" // Add more posts here manually if needed
-        ];
+        // Fetch posts.json
+        const response = await fetch('/content/blog/posts.json');
+        const posts = await response.json();
 
         postsContainer.innerHTML = '';
 
-        for (const file of files) {
-          const response = await fetch(`/content/blog/${file}`);
-          const text = await response.text();
+        for (const post of posts) {
+          const res = await fetch(`/content/blog/${post.filename}`);
+          const text = await res.text();
 
-          // Split front matter and content
+          // Extract Markdown content (ignoring front matter)
           const match = text.match(/---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
-          let metadata = {}, content = '';
-          if (match) {
-            match[1].split('\n').forEach(line => {
-              const [key, ...rest] = line.split(':');
-              if(key) metadata[key.trim()] = rest.join(':').trim();
-            });
-            content = match[2].trim();
-          }
+          let content = '';
+          if (match) content = match[2].trim();
 
           // Create post element
           const postDiv = document.createElement('div');
           postDiv.className = 'post';
           postDiv.innerHTML = `
-            <div class="post-title">${metadata.title || 'Untitled'}</div>
-            <div class="post-date">${metadata.date || ''}</div>
+            <div class="post-title">${post.title}</div>
+            <div class="post-date">${post.date}</div>
             <div class="post-content">${content}</div>
           `;
           postsContainer.appendChild(postDiv);
