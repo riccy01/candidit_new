@@ -13,50 +13,50 @@
     a { color: #0077cc; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <h1>Blog</h1>
   <div id="blog-posts">Loading posts...</div>
 
-  <script>
-    async function loadPosts() {
-      const postsContainer = document.getElementById('blog-posts');
+<script>
+async function loadPosts() {
+  const postsContainer = document.getElementById('blog-posts');
 
-      try {
-        const response = await fetch('/content/blog/posts.json');
-        const posts = await response.json();
+  try {
+    const response = await fetch('/content/blog/posts.json');
+    const posts = await response.json();
 
-        postsContainer.innerHTML = '';
+    postsContainer.innerHTML = '';
 
-        for (const post of posts) {
-          const res = await fetch(`/content/blog/${post.filename}`);
-          const text = await res.text();
+    for (const post of posts) {
+      const res = await fetch(`/content/blog/${post.filename}`);
+      const text = await res.text();
 
-          // Extract Markdown content (ignore front matter)
-          const match = text.match(/---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
-          let content = match ? match[2].trim() : text;
+      // Extract Markdown content (ignore front matter)
+      const match = text.match(/---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
+      const content = match ? match[2].trim() : text;
 
-          // Create excerpt (first 200 chars)
-          const excerpt = content.length > 200 ? content.substring(0, 200) + '...' : content;
+      // Create excerpt (first 200 chars, plain text)
+      const excerpt = content.replace(/[\r\n]+/g, ' ').substring(0, 200) + (content.length > 200 ? '...' : '');
 
-          // Post element
-          const postDiv = document.createElement('div');
-          postDiv.className = 'post';
-          postDiv.innerHTML = `
-            <div class="post-title">${post.title}</div>
-            <div class="post-date">${post.date}</div>
-            <div class="post-content">${excerpt}</div>
-            <a href="/content/blog/${post.filename}" target="_blank">Read more</a>
-          `;
-          postsContainer.appendChild(postDiv);
-        }
-      } catch (err) {
-        postsContainer.innerHTML = 'Error loading posts.';
-        console.error(err);
-      }
+      // Post element
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+      postDiv.innerHTML = `
+        <div class="post-title">${post.title}</div>
+        <div class="post-date">${post.date}</div>
+        <div class="post-content">${marked.parse(content)}</div>
+      `;
+      postsContainer.appendChild(postDiv);
     }
+  } catch (err) {
+    postsContainer.innerHTML = 'Error loading posts.';
+    console.error(err);
+  }
+}
 
-    loadPosts();
-  </script>
+loadPosts();
+</script>
 </body>
 </html>
