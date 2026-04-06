@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Candidit Blog</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: auto; padding: 20px; }
+    header, footer { text-align: center; margin-bottom: 20px; }
+    nav a { margin: 0 10px; text-decoration: none; color: #333; }
+    article { border-bottom: 1px solid #ddd; padding: 20px 0; }
+    article h2 { margin: 0; color: #222; }
+    .date { font-size: 0.85em; color: #888; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Candidit Blog</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html">Blog</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="posts">
+      <p>Loading posts...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Candidit</p>
+  </footer>
+
+  <script>
+    const postsContainer = document.getElementById('posts');
+
+    // Function to fetch all Markdown files in content/blog
+    async function fetchPosts() {
+      postsContainer.innerHTML = '';
+
+      try {
+        // List of Markdown files - update manually or generate dynamically
+        const posts = [
+          'welcome-to-the-blog.md'  // Start with your first post
+          // Add more posts here or automate later
+        ];
+
+        for (const file of posts) {
+          const res = await fetch(`../content/blog/${file}`);
+          const text = await res.text();
+
+          // Extract YAML front matter manually
+          const frontMatterMatch = text.match(/---\s*([\s\S]*?)\s*---/);
+          let content = text;
+          let title = '';
+          let date = '';
+          if (frontMatterMatch) {
+            const fm = frontMatterMatch[1];
+            content = text.replace(frontMatterMatch[0], '');
+            title = fm.match(/title:\s*(.*)/)?.[1] || 'No title';
+            date = fm.match(/date:\s*(.*)/)?.[1] || '';
+          }
+
+          // Add post to page
+          postsContainer.innerHTML += `
+            <article>
+              <h2>${title}</h2>
+              <p class="date">${date}</p>
+              ${marked.parse(content)}
+            </article>
+          `;
+        }
+
+      } catch (err) {
+        postsContainer.innerHTML = '<p>Failed to load posts.</p>';
+        console.error(err);
+      }
+    }
+
+    fetchPosts();
+  </script>
+</body>
+</html>

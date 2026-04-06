@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main  # change if your main branch is different (e.g., master)
+
+media_folder: "assets/images"   # where uploaded images will be stored
+public_folder: "/assets/images" # path used in Markdown posts
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"       # where Markdown posts are stored
+    create: true                 # allow creating new posts
+    slug: "{{slug}}"             # filename generated from title
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
