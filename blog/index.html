@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-    h1 { text-align: center; }
+    h1 { text-align: center; margin-bottom: 30px; }
     .post { margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #ddd; }
     .post-title { font-size: 1.5em; margin-bottom: 5px; }
     .post-date { color: #555; font-size: 0.9em; margin-bottom: 10px; }
@@ -38,18 +38,27 @@
           const match = text.match(/---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
           const content = match ? match[2].trim() : text;
 
-          // Create excerpt (first 200 chars)
-          const excerpt = content.replace(/[\r\n]+/g, ' ').substring(0, 200) + (content.length > 200 ? '...' : '');
+          // Convert full Markdown to HTML
+          const fullHtml = marked.parse(content);
 
-          // Post element with Read more link to post.html
+          // Use a temporary div to truncate safely
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = fullHtml;
+
+          // Get first 200 characters of text content for excerpt
+          let excerptText = tempDiv.textContent.substring(0, 200);
+          if (tempDiv.textContent.length > 200) excerptText += '...';
+
+          // Render the excerpt with Markdown formatting preserved
           const postDiv = document.createElement('div');
           postDiv.className = 'post';
           postDiv.innerHTML = `
             <div class="post-title">${post.title}</div>
             <div class="post-date">${post.date}</div>
-            <div class="post-content">${marked.parse(excerpt)}</div>
+            <div class="post-content">${marked.parse(excerptText)}</div>
             <a href="/blog/post.html?file=${post.filename}&title=${encodeURIComponent(post.title)}&date=${post.date}">Read more</a>
           `;
+
           postsContainer.appendChild(postDiv);
         }
       } catch (err) {
