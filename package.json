@@ -2,9 +2,7 @@
   "name": "candidit_new",
   "version": "1.0.0",
   "scripts": {
-    "build": "eleventy"
+    "build": "node generate-posts-json.js"
   },
-  "devDependencies": {
-    "@11ty/eleventy": "^2.0.0"
-  }
+  "dependencies": {}
 }
