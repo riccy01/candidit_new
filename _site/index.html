@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidit Consulting</title>
+
+  <style>
+    /* ========= RESET ========= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: white;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ========= NAVIGATION ========= */
+    nav {
+      background: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      border-bottom: ;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0b3d91;
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    /* ========= HEADER ========= */
+    header {
+      background-color: #eaf2ff; /* fallback */
+      background-image: url("/images/Background-light-blue.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px 25px 50px;
+      text-align: center;
+
+      /* Safe fade edges */
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+      );
+    }
+
+    header img {
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin-top: 12px;
+      font-size: 2.2rem;
+      color: #0b3d91;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========= SECTIONS ========= */
+    .section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    /* ========= ABOUT ========= */
+    #about ul {
+      max-width: 720px;
+      margin: auto;
+      padding-left: 20px;
+    }
+
+    #about li {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      text-align: justify;
+    }
+
+    /* ========= SERVICES ========= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      color: #0b3d91;
+    }
+
+    /* ========= BUTTON ========= */
+    .btn-primary {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 14px 32px;
+      background: #0b3d91;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    /* ========= FOOTER ========= */
+    .site-footer {
+      background: #0b3d91;
+      color: white;
+      padding: 50px 20px 25px;
+    }
+
+    .footer-container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .footer-column a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 35px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+        padding: 18px 20px;
+        flex-wrap: wrap;
+      }
+
+      header img {
+        max-width: 300px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/Founder/">Founder</a>
+    <a href="/Services/">Services</a>
+    <a href="/Resources/">Resources</a>
+    <a href="/Contact Us/">Contact</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <img src="/images/Candidit-Logo-Dark.png" alt="Candidit Consulting Logo">
+    <h1>Elevating Capability and Confidence</h1>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>Our Core Services</h2>  
+    <ul>
+      <li>We specialise in leadership capability development and communication mastery.</li>
+      <li>We blend practical learning with candid conversations to support lasting growth.</li>
+      <li>At the end of it all, we want every team to be able to say “Can. Did it!”.</li>
+    </ul>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="grid">
+      <div class="card">
+        <h3>Training Programmes</h3>
+        <p>Leadership, communication, and management workshops designed for real-world impact.</p>
+      </div>
+      <div class="card">
+        <h3>Coaching</h3>
+        <p>Executive, management, career, and workplace coaching tailored for growth and clarity.</p>
+      </div>
+      <div class="card">
+        <h3>Business Consulting</h3>
+        <p>Support in organisational development, culture transformation, and performance enhancement.</p>
+      </div>
+    </div>
+
+    <div class="centered">
+      <a href="https://calendly.com/riccy01/consult" class="btn-primary" target="_blank">
+        Book a Conversation
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Follow Me</h3>
+        <a href="https://www.linkedin.com/in/richardngcy" target="_blank">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+      <div class="footer-column">
+        <h3>Site Map</h3>
+        <a href="/">Home</a>
+        <a href="/Founder/">Meet The Founder</a>
+        <a href="/Services/">Services</a>
+        <a href="/Resources/">Resources</a>
+        <a href="/Contact Us/">Contact</a>
+      </div>
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <a href="mailto:info@candiditconsulting.com">info@candiditconsulting.com</a>
+        <a href="https://wa.me/6588985584" target="_blank">+65 8898 5584</a>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Candidit Consulting</p>
+  </footer>
+
+</body>
+</html>

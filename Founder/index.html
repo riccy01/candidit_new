@@ -1,0 +1,430 @@
+---
+Founder
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet The Founder – Candidit Consulting</title>
+
+  <style>
+    /* ========= RESET ========= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: white;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ========= NAV ========= */
+    nav {
+      background: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      border-bottom: ;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0b3d91;
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    /* ========= HEADER ========= */
+    header {
+      background-color: #eaf2ff; /* fallback */
+      background-image: url("/images/Background-light-blue.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px 25px 50px;
+      text-align: center;
+
+      /* Safe fade edges */
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+      );
+    }
+
+    header img {
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+    }
+
+    header h1 {
+      margin-top: 12px;
+      font-size: 2.2rem;
+      color: #0b3d91;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========= SECTIONS ========= */
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    /* ========= FOUNDER ========= */
+    .founder-layout {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .founder-photo {
+      width: 280px;
+      max-width: 100%;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+
+    .founder-text ul {
+      padding-left: 20px;
+      margin-bottom: 25px;
+    }
+
+    .founder-text li {
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #0b3d91;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    /* ========= CAROUSEL ========= */
+    .carousel-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 40px auto;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s ease;
+    }
+
+    .carousel-card {
+      min-width: 100%;
+      padding: 40px 35px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .carousel-card h3 {
+      margin-bottom: 5px;
+    }
+
+    .carousel-card h4 {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    .carousel-card p {
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      color: #444;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .prev { left: 8px; }
+    .next { right: 8px; }
+
+    /* ========= FOOTER ========= */
+    footer {
+      background: #0b3d91;
+      color: white;
+      padding: 40px 20px 20px;
+    }
+
+    .footer-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 0.9rem;
+    }
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      header img {
+        max-width: 300px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .founder-layout {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/">Home</a>
+    <a href="/Services/">Services</a>
+    <a href="/Resources/">Resources</a>
+    <a href="/Contact Us/">Contact</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <img src="/images/Candidit-Logo-Dark.png" alt="Candidit Consulting Logo">
+    <h1>Elevating Capability and Confidence</h1>
+  </header>
+
+  <!-- FOUNDER -->
+  <section class="section">
+          <h2> Richard Ng</h2>
+    <div class="founder-layout">
+      <img src="/images/Ric Profile.jpg" alt="Richard Ng" class="founder-photo">
+      <div class="founder-text">
+        <ul>
+          <li>Purpose-driven professional passionate about developing people and businesses</li>
+          <li>30 years of leadership experience across public and private sectors</li>
+          <li>Built high-performance teams across four continents</li>
+          <li>More than 300 hrs of corporate training facilitation, coaching and mentoring</li>
+          <li>Associate Certified Coach – International Coaching Federation</li>
+          <li>ACLP 2.0 Certified Training Facilitator – Institute of Adult Learning</li>
+          <li>Certified Professional Mentor – Asia Institute of Mentoring</li>
+        </ul>
+
+        <a href="https://calendly.com/riccy01/consult" class="btn" target="_blank">
+          Book a Conversation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <h2>What People Say About Me</h2>
+
+    <div class="carousel-wrapper">
+    <button class="carousel-btn prev">&#10094;</button>
+
+    <div class="carousel-track">
+      <div class="carousel-card">
+        <h3>Yunus Mohammad</h3>
+        <h3>Smart City Project Manager, Parsons</h3>
+        <p>I had the privilege of working closely with Richard, and I can confidently say he is one of the most principled, ethical, and purpose driven leaders I’ve encountered.</p>
+        <p>His integrity, calm yet decisive leadership style, and genuine commitment to developing people create an environment where teams consistently perform at their best. Richard leads by example, upholds high standards with empathy, and always keeps the broader vision in focus.</p>
+        <p>I wholeheartedly recommend him to any organization or individual fortunate enough to work alongside him.</p>
+      </div>
+
+      <div class="carousel-card">
+        <h3>Shih Jih Yao</h3>
+        <h3>EVP/Head Smart Utilities and Infrastructure, ST Engineering</h3>
+        <p>Richard stands out in the ability to provide clarity in ambiguous situations. He is able to distil complex concepts and problems into understandable terms, enabling seamless collaboration and progress.</p>
+        <p>He prioritized right resourcing the team, staff coaching and empowering team members to reach their full potential. He excelled in fostering strong customer engagement, ensuring that customers needs were met and many a time exceeding their expectations.</p>
+        <p>HRichard's strong leadership, human-centered focus, and unwavering dedication to both customer satisfaction and team success has created positive impact to the organisation, staff individuals and customers. I am privileged to have him as part of the leadership and management team.</p>
+      </div>
+
+      <div class="carousel-card">
+        <h3>Tuan Ahn Pham</h3>
+        <h3>Founder, WNE Solutions</h3>
+        <p>Having worked closely with Richard, I have been consistently impressed by his exceptional ability to lead with both vision and integrity. His leadership is not just about guiding teams towards achieving business objectives; it's about inspiring every individual to realize their full potential.</p>
+        <p>Beyond his interpersonal skills, Richard's strategic understanding of the business landscape is nothing short of remarkable. He has an innate ability to dissect complex market dynamics, identify opportunities, and craft strategies that position the organization for success. His insights have been invaluable in navigating challenges and capitalizing on opportunities, driving the business forward in a competitive environment.</p>
+      </div>
+
+      <div class="carousel-card">
+        <h3>Reyahd D.J. Kazmi</h3>
+        <h3>Owner and CEO, Kazmi Advisors</h3>
+        <p>Richard is the man! He’s knowledgeable, helpful, kind, and patient recognizing that when dealing with public sector clients it takes time a true relationship development. He’s committed to his practice and always knows how to get to yes!</p>
+      </div>
+
+      <div class="carousel-card">
+        <h3>Miguel GAMIÑO Jr., CPA</h3>
+        <h3>Co-Founder and CEO, SuperCity AI</h3>
+        <p>Richard has been a great business partner. He has a creative and business-oriented approach to our work. He easily navigates global markets and is willing to work together to bring new solutions to market! His leadership helped motivate our teams to create a positive impact for all stakeholders!</p> 
+      </div>
+
+      <div class="carousel-card">
+        <h3>Cheong  Keat SOH, CFA</h3>
+        <h3>CFO, ST Engineering North America</h3>
+        <p>I had the privilege of meeting Richard early in my career. His insights and guidance were invaluable, and his coaching style is both empowering and insightful, always challenging me to think critically and reach new heights. I am grateful for the wisdom he shared with me.</p>
+      </div>
+
+      <div class="carousel-card">
+        <h3>Sherif Attia</h3>
+        <h3>Director Middle East - Telecom, Airports, ITS & Security, IDOM Consulting, Engineering, Architecture</h3>
+        <p>I am pleased to recommend Richard, who consistently demonstrated exceptional business leadership throughout our time working together. His ability to communicate clearly and effectively set a strong foundation for collaboration with clients, partners, and team members alike. Richard led with a strategic mindset and a people-centered approach, fostering trust and delivering results. His professionalism, integrity, and dedication to building strong relationships made a lasting impact and positioned him as a valuable leader in any organization.</p>
+      </div>
+
+      <div class="carousel-card">
+        <h3>William WU</h3>
+        <h3>Associate, Berkeley Energy</h3>
+        <p>I have been lucky to know Richard as a mentor since I was an intern and I have known him for more than 10 years now. Even to an intern, he was an attentive listener, provided constructive feedback and motivated me to improve. He is always able to provide leadership and guidance when it is needed, demonstrating high emotional quotient and human touch in a corporate environment.</p>
+        <p>What sets Richard apart is also his fiercely methodical and strategic thinking, which enables him to go beyond the surface, break down complex problems and address them at the crux. Coupled with rich experience in people management and problem solving, Richard is an effective and well respected leader in the organization.</p>
+        <p>Richard has motivated me to think bigger, embrace challenges and has been an figure of inspiration in my career. For that I am grateful for Richard's mentorship.</p>
+      </div>
+
+
+      <div class="carousel-card">
+        <h3>Ruth SEE</h3>
+        <h3>Project Manager, Unmanned Surface Vessels, ST Engineering</h3>
+        <p>I have benefited immensely from Richard’s mentorship. He has many thoughtful principles, which he shares so freely. They always provide me with valuable perspective that has greatly helped me navigate my career. I am grateful for his guidance and support!</p>
+      </div>
+
+    </div>
+
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Follow Me</h3>
+        <a href="https://www.linkedin.com/in/richardngcy" target="_blank">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+
+      <div>
+        <h3>Site Map</h3>
+        <a href="/">Home</a>
+        <a href="/Founder/">Meet The Founder</a>
+        <a href="/Services/">Services</a>
+        <a href="/Resources/">Resources</a>
+        <a href="/Contact Us/">Contact</a>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <a href="mailto:info@candiditconsulting.com">info@candiditconsulting.com</a>
+        <a href="https://wa.me/6588985584" target="_blank">WhatsApp +65 8898 5584</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Candidit Consulting
+    </div>
+  </footer>
+
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.carousel-card');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    let index = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    next.onclick = () => {
+      index = (index + 1) % cards.length;
+      updateCarousel();
+    };
+
+    prev.onclick = () => {
+      index = (index - 1 + cards.length) % cards.length;
+      updateCarousel();
+    };
+
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) next.click();
+      if (endX - startX > 50) prev.click();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+---
+Resources
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources | Candidit Consulting</title>
+  
+<style>
+    /* ========= RESET ========= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: white;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ========= NAV ========= */
+    nav {
+      background: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      border-bottom: ;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0b3d91;
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    /* ========= HEADER ========= */
+    header {
+      background-color: #eaf2ff; /* fallback */
+      background-image: url("/images/Background-light-blue.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px 25px 50px;
+      text-align: center;
+
+      /* Safe fade edges */
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%
+      );
+    }
+
+
+    header img {
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+    }
+
+    header h1 {
+      margin-top: 12px;
+      font-size: 2.2rem;
+      color: #0b3d91;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========= HERO / SECTION TITLES ========= */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    /* ========= VIDEO GRID ========= */
+    .video-grid, .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card, .image-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .video-card video, .image-card img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .video-title, .image-title {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* ========= MODALS ========= */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal video, .modal img {
+      width: 80%;
+      max-width: 900px;
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ========= FOOTER ========= */
+    .site-footer {
+      background: #0b3d91;
+      color: white;
+      padding: 40px 20px 20px;
+    }
+
+    .footer-container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .footer-column a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .footer-column a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      header img {
+        max-width: 300px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/">Home</a>
+    <a href="/Founder/">Founder</a>
+    <a href="/Services/">Services</a>
+    <a href="/Contact Us/">Contact</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <img src="/images/Candidit-Logo-Dark.png" alt="Candidit Consulting Logo">
+    <h1>Elevating Capability and Confidence</h1>
+  </header>
+
+  <div class="container">
+    <!-- VIDEO SECTION -->
+<!--    
+    <h2>Featured Videos</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <p class="video-title">Leadership Alphabet Series 1</p>
+        <video class="preview-video" muted preload="metadata" data-video="Videos/Intro to Alphabet Traits.mp4">
+          <source src="videos/Intro to Alphabet Traits.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <p class="video-title">Leadership Alphabet Series 2</p>
+        <video class="preview-video" muted preload="metadata" data-video="Videos/Vid2.mp4">
+          <source src="videos/Vid2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+-->
+    <!-- IMAGE SECTION -->
+    <h2>Featured Models</h2>
+    <div class="image-grid">
+      <div class="image-card">
+        <p class="image-title">3H Model</p>
+        <img src="/images/3H Model.png" alt="3H Model" class="preview-image">
+      </div>
+      <div class="image-card">
+        <p class="image-title">7-Stage Critical Thinking Loop</p>
+        <img src="/images/Thinking Loop.png" alt="Thinking Loop" class="preview-image">
+      </div>
+      <div class="image-card">
+        <p class="image-title">CLEAN Problem Solving</p>
+        <img src="/images/CLEAN.png" alt="CLEAN" class="preview-image">
+      </div>
+      <div class="image-card">
+        <p class="image-title">Wheel of Change</p>
+        <img src="/images/Wheel of Change.png" alt="Wheel of Change" class="preview-image">
+      </div>
+      <div class="image-card">
+        <p class="image-title">Emotional Journey of Change</p>
+        <img src="/images/Emotional Journey.png" alt="Emotional Journey" class="preview-image">
+      </div>
+      <div class="image-card">
+        <p class="image-title">CLEAR Model</p>
+        <img src="/images/CLEAR.png" alt="CLEAR" class="preview-image">
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="mediaModal">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <video id="modalVideo" controls></video>
+    <img id="modalImage" alt="" style="display:none;">
+  </div>
+
+  <script>
+    // Video hover preview & modal
+/*    
+      document.querySelectorAll('.preview-video').forEach(video => {
+      video.addEventListener('mouseenter', () => video.play());
+      video.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+
+      video.addEventListener('click', () => {
+        const src = video.getAttribute('data-video');
+        const modal = document.getElementById('mediaModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalImage = document.getElementById('modalImage');
+
+        modalVideo.src = src;
+        modalVideo.style.display = 'block';
+        modalImage.style.display = 'none';
+        modal.style.display = 'flex';
+        modalVideo.play();
+      });
+    });
+*/
+
+    // Image modal
+    document.querySelectorAll('.preview-image').forEach(img => {
+      img.addEventListener('click', () => {
+        const src = img.getAttribute('src');
+        const modal = document.getElementById('mediaModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalImage = document.getElementById('modalImage');
+
+        modalImage.src = src;
+        modalImage.style.display = 'block';
+        modalVideo.style.display = 'none';
+        modal.style.display = 'flex';
+      });
+    });
+
+    // Close modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+      const modal = document.getElementById('mediaModal');
+      const modalVideo = document.getElementById('modalVideo');
+      const modalImage = document.getElementById('modalImage');
+
+      modalVideo.pause();
+      modalVideo.currentTime = 0;
+      modal.style.display = 'none';
+    });
+
+    // Close modal on background click
+    document.getElementById('mediaModal').addEventListener('click', (e) => {
+      if (e.target.id === "mediaModal") {
+        const modal = e.target;
+        const modalVideo = document.getElementById('modalVideo');
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Follow Me</h3>
+        <a href="https://www.linkedin.com/in/richardngcy" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/yourprofile" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@yourprofile" target="_blank">TikTok</a>
+      </div>
+      <div class="footer-column">
+        <h3>Site Map</h3>
+        <a href="/">Home</a>
+        <a href="/Founder/">Meet The Founder</a>
+        <a href="/Services/">Services</a>
+        <a href="/Resources/">Resources</a>
+        <a href="/Contact Us/">Contact</a>
+      </div>
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <p>Email:<br><a href="mailto:info@candiditconsulting.com">info@candiditconsulting.com</a></p>
+        <p>WhatsApp:<br><a href="https://wa.me/6588985584" target="_blank">+65 8898 5584</a></p>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Candidit Consulting</p>
+  </footer>
+
+</body>
+</html>
