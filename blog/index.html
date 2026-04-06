@@ -23,7 +23,6 @@
       const postsContainer = document.getElementById('blog-posts');
 
       try {
-        // Fetch posts.json
         const response = await fetch('/content/blog/posts.json');
         const posts = await response.json();
 
@@ -33,18 +32,21 @@
           const res = await fetch(`/content/blog/${post.filename}`);
           const text = await res.text();
 
-          // Extract Markdown content (ignoring front matter)
+          // Extract Markdown content (ignore front matter)
           const match = text.match(/---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
-          let content = '';
-          if (match) content = match[2].trim();
+          let content = match ? match[2].trim() : text;
 
-          // Create post element
+          // Create excerpt (first 200 chars)
+          const excerpt = content.length > 200 ? content.substring(0, 200) + '...' : content;
+
+          // Post element
           const postDiv = document.createElement('div');
           postDiv.className = 'post';
           postDiv.innerHTML = `
             <div class="post-title">${post.title}</div>
             <div class="post-date">${post.date}</div>
-            <div class="post-content">${content}</div>
+            <div class="post-content">${excerpt}</div>
+            <a href="/content/blog/${post.filename}" target="_blank">Read more</a>
           `;
           postsContainer.appendChild(postDiv);
         }
