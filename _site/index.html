@@ -200,6 +200,27 @@
   </style>
 </head>
 
+  <!-- your existing content above -->
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (user) {
+          window.location.href = "/admin/";
+        }
+      });
+
+      window.netlifyIdentity.on("login", () => {
+        window.location.href = "/admin/";
+      });
+    }
+  </script>
+
+</body>
+</html>
+
 <body>
 
   <!-- NAV -->
