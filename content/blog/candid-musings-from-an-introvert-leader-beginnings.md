@@ -1,5 +1,5 @@
 ---
-title: Candid Musings From An Introvert Leader - Beginnings
+title: Candid Musings From An Introvert Leader
 date: 2026-04-08T12:19:03.169Z
 ---
 This is my very first attempt at trying to write a blog. I have never really been much of a writer although jotting down my reflections has indeed become a much bigger part of my personal development process ever since attending my TGM course at INSEAD in 2017.

@@ -1,32 +1,47 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const blogDir = path.join(__dirname, 'content', 'blog');
-const outputFile = path.join(blogDir, 'posts.json');
+const postsDir = path.join(__dirname, "content/blog");
+const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
 
-const files = fs.readdirSync(blogDir)
-  .filter(file => file.endsWith('.md'));
+function titleFromFilename(filename) {
+  return filename
+    .replace(".md", "")
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
 
-const posts = files.map(filename => {
-  const content = fs.readFileSync(path.join(blogDir, filename), 'utf-8');
+function stripFrontmatter(content) {
+  return content.replace(/---[\s\S]*?---/, "").trim();
+}
 
-  // Extract front matter
-  const match = content.match(/---\s*([\s\S]*?)\s*---/);
-  let metadata = {};
-  if (match) {
-    match[1].split('\n').forEach(line => {
-      const [key, ...rest] = line.split(':');
-      if(key) metadata[key.trim()] = rest.join(':').trim();
-    });
-  }
+function generateExcerpt(content) {
+  return stripFrontmatter(content)
+    .replace(/^#.*$/gm, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 200);
+}
+
+const posts = files.map(file => {
+  const raw = fs.readFileSync(path.join(postsDir, file), "utf8");
+
+  const cleaned = stripFrontmatter(raw);
+
+  const slug = file.replace(".md", "");
 
   return {
-    filename,
-    title: metadata.title || 'Untitled',
-    date: metadata.date || ''
+    filename: file,
+    slug: slug,
+    title: titleFromFilename(file),
+    excerpt: generateExcerpt(raw),   // ✅ CLEANED
+    date: new Date().toISOString().split("T")[0]
   };
 });
 
-// Write posts.json
-fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-console.log(`Generated ${outputFile} with ${posts.length} posts.`);
+fs.writeFileSync(
+  path.join(postsDir, "posts.json"),
+  JSON.stringify(posts, null, 2)
+);
+
+console.log("posts.json regenerated cleanly");

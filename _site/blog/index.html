@@ -8,103 +8,28 @@
   <style>
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
-      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fff;
       color: #222;
     }
 
-    /* ========= HEADER ========= */
     header {
-      background-color: #eaf2ff; /* fallback */
       background-image: url("/images/Background-light-blue.png");
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      padding: 40px 25px 50px;
+      padding: 40px 25px;
       text-align: center;
-
-      /* Safe fade edges */
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 18%,
-        black 82%,
-        transparent 100%
-      );
-      mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 18%,
-        black 82%,
-        transparent 100%
-      );
     }
 
     header img {
       max-width: 500px;
       width: 100%;
-      height: auto;
     }
 
-    header h1 {
-      margin-top: 12px;
-      font-size: 2.2rem;
-      color: #0b3d91;
-      letter-spacing: 0.5px;
-    }
-    .back-button {
-      max-width: 900px;
-      margin: 10px auto 0;
-      padding: 0 20px;
-    }
-
-    .back-button a {
-      text-decoration: none;
-      color: #555;
-      font-size: 14px;
-      transition: color 0.2s ease;
-    }
-
-    .back-button a:hover {
-      color: #000;
-    }
-    /* ===== PAGE TITLE ===== */
-    .page-title {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 60px;
-      letter-spacing: 4px;
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      font-style: italic;
-    }
-
-    /* ===== SEARCH BAR ===== */
-    .search-container {
-      display: flex;
-      justify-content: center;
-      margin: 30px 0;
-    }
-
-    .search-input {
-      width: 60%;
-      max-width: 500px;
-      padding: 12px 16px;
-      border-radius: 25px;
-      border: 1px solid #ddd;
-      font-size: 16px;
-      outline: none;
-    }
-
-    .search-input:focus {
-      border-color: #000;
-    }
-
-    /* ===== BLOG LIST ===== */
     .container {
       max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
+      margin: auto;
+      padding: 20px;
     }
 
     .post {
@@ -114,33 +39,31 @@
       padding: 25px 0;
       border-bottom: 1px solid #eee;
       cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .post:hover {
-      background: #fafafa;
-    }
-
-    .post-text {
-      flex: 1;
     }
 
     .post-title {
       font-size: 22px;
       font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .post-excerpt {
-      color: #555;
-      font-size: 15px;
-      line-height: 1.5;
     }
 
     .post-meta {
-      margin-top: 10px;
       font-size: 13px;
       color: #888;
+      margin-top: 5px;
+    }
+
+    .post-excerpt {
+      font-size: 15px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #0b3d91;
+      text-decoration: none;
     }
 
     .post-image {
@@ -150,112 +73,76 @@
       border-radius: 6px;
     }
 
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 30px;
-      border-top: 1px solid #eee;
-      color: #777;
-      font-size: 14px;
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      .post {
-        flex-direction: column;
-      }
-
-      .post-image {
-        width: 100%;
-        height: auto;
-      }
-
-      .search-input {
-        width: 80%;
-      }
-    }
+    .page-title { 
+      text-align: center; 
+      margin-top: 10px; 
+      font-size: 60px; 
+      letter-spacing: 4px; 
+      font-family: 'Playfair Display', serif; 
+      font-weight: 600; 
+      font-style: italic;
+      color: #0b3d91; 
+     }
   </style>
 </head>
 
 <body>
 
+<header>
+  <img src="/images/Candidit-Logo-Dark.png" alt="Logo">
+</header>
+<div class="page-title">Candid Musings</div>
+<div class="container" id="postContainer"></div>
 
-  <!-- HEADER -->
-  <header>
-    <img src="/images/Candidit-Logo-Dark.png" alt="Candidit Consulting Logo">
-  </header>
-  <!-- BACK BUTTON (Temporary) -->
-  <div class="back-button">
-    <a href="../index.html">← Back</a>
-  </div>
-  <!-- PAGE TITLE -->
-  <div class="page-title">Candid Musings</div>
+<script>
+let allPosts = [];
 
-  <!-- ===== SEARCH ===== -->
-  <div class="search-container">
-    <input 
-      type="text" 
-      id="searchInput" 
-      class="search-input" 
-      placeholder="Search musings..."
-      onkeyup="filterPosts()"
-    >
-  </div>
+async function loadPosts() {
+  const res = await fetch('/content/blog/posts.json');
+  allPosts = await res.json();
+  renderPosts(allPosts);
+}
 
-  <!-- ===== BLOG LIST ===== -->
-  <div class="container" id="postContainer">
+function renderPosts(posts) {
+  const container = document.getElementById('postContainer');
+  container.innerHTML = "";
 
-    <div class="post" data-title="understanding ai terms">
-      <div class="post-text">
-        <div class="post-title">If You Understand These 5 AI Terms, You’re Ahead of 90% of People</div>
-        <div class="post-excerpt">Master the core ideas behind AI without getting lost.</div>
-        <div class="post-meta">Mar 29 · 5 min read</div>
+  posts.forEach(post => {
+
+    const slug = (post.filename || "")
+      .replace(".md", "")
+      .trim()
+      .toLowerCase();
+
+    const div = document.createElement("div");
+    div.className = "post";
+
+    div.innerHTML = `
+      <div>
+        <div class="post-title">${post.title || ""}</div>
+        <div class="post-meta">${post.date || ""}</div>
+        <div class="post-excerpt">${post.excerpt || ""}</div>
+
+        <a class="read-more"
+           href="/blog/post?slug=${slug}">
+          Read more →
+        </a>
       </div>
-      <img src="https://via.placeholder.com/150" class="post-image">
-    </div>
 
-    <div class="post" data-title="leadership lessons bad bosses">
-      <div class="post-text">
-        <div class="post-title">What Terrible Bosses Taught Me About Great Leadership</div>
-        <div class="post-excerpt">Unpacking powerful lessons from poor managers—including myself.</div>
-        <div class="post-meta">Oct 22 · 4 min read</div>
-      </div>
-      <img src="https://via.placeholder.com/150" class="post-image">
-    </div>
+      <img class="post-image" src="https://via.placeholder.com/150">
+    `;
 
-    <div class="post" data-title="morning habits neuroscience">
-      <div class="post-text">
-        <div class="post-title">As a Neuroscientist, I Quit These 5 Morning Habits</div>
-        <div class="post-excerpt">Most people sabotage their day within minutes of waking.</div>
-        <div class="post-meta">Jan 15 · 6 min read</div>
-      </div>
-      <img src="https://via.placeholder.com/150" class="post-image">
-    </div>
+    // ENTIRE CARD CLICK (safe, no .html usage)
+    div.addEventListener("click", () => {
+      window.location.href = `/blog/post?slug=${slug}`;
+    });
 
-  </div>
+    container.appendChild(div);
+  });
+}
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    © 2026 Candidit Consulting. All rights reserved.
-  </footer>
-
-  <!-- ===== SEARCH SCRIPT ===== -->
-  <script>
-    function filterPosts() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const posts = document.querySelectorAll('.post');
-
-      posts.forEach(post => {
-        const title = post.getAttribute('data-title');
-
-        if (title.includes(input)) {
-          post.style.display = "flex";
-        } else {
-          post.style.display = "none";
-        }
-      });
-    }
-  </script>
+loadPosts();
+</script>
 
 </body>
 </html>
