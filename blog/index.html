@@ -12,9 +12,24 @@
       background: #fff;
       color: #222;
     }
-    /* ========= HEADER ========= */
+
+    nav {
+      background: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0b3d91;
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
     header {
-      background-color: #eaf2ff; /* fallback */
+      background-color: #eaf2ff;
       background-image: url("/images/Background-light-blue.png");
       background-size: cover;
       background-position: center;
@@ -22,7 +37,6 @@
       padding: 40px 25px 50px;
       text-align: center;
 
-      /* Safe fade edges */
       -webkit-mask-image: linear-gradient(
         to bottom,
         transparent 0%,
@@ -45,11 +59,15 @@
       height: auto;
     }
 
-    header h1 {
-      margin-top: 12px;
-      font-size: 2.2rem;
+    .page-title {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 60px;
+      letter-spacing: 4px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-style: italic;
       color: #0b3d91;
-      letter-spacing: 0.5px;
     }
 
     .container {
@@ -57,22 +75,7 @@
       margin: auto;
       padding: 20px;
     }
-    /* ========= NAVIGATION ========= */
-    nav {
-      background: white;
-      padding: 18px 40px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 30px;
-      border-bottom: ;
-    }
 
-    nav a {
-      text-decoration: none;
-      color: #0b3d91;
-      font-weight: bold;
-      font-size: 1.05rem;
-    }
     .post {
       display: flex;
       justify-content: space-between;
@@ -80,6 +83,7 @@
       padding: 25px 0;
       border-bottom: 1px solid #eee;
       cursor: pointer;
+      align-items: flex-start;
     }
 
     .post-title {
@@ -97,6 +101,7 @@
       font-size: 15px;
       color: #555;
       margin-top: 10px;
+      line-height: 1.5;
     }
 
     .read-more {
@@ -108,28 +113,18 @@
     }
 
     .post-image {
-      width: 140px;
-      height: 100px;
+      width: 160px;
+      height: 110px;
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 8px;
+      flex-shrink: 0;
     }
 
-    .page-title { 
-      text-align: center; 
-      margin-top: 10px; 
-      font-size: 60px; 
-      letter-spacing: 4px; 
-      font-family: 'Playfair Display', serif; 
-      font-weight: 600; 
-      font-style: italic;
-      color: #0b3d91; 
-     }
-
-    /* ========= FOOTER ========= */
     .site-footer {
       background: #0b3d91;
       color: white;
       padding: 50px 20px 25px;
+      margin-top: 60px;
     }
 
     .footer-container {
@@ -159,19 +154,19 @@
       opacity: 0.9;
     }
 
-    /* ========= RESPONSIVE ========= */
     @media (max-width: 768px) {
       nav {
         justify-content: center;
         flex-wrap: wrap;
       }
 
-      header img {
-        max-width: 300px;
+      .post {
+        flex-direction: column;
       }
 
-      header h1 {
-        font-size: 1.5rem;
+      .post-image {
+        width: 100%;
+        height: auto;
       }
 
       .footer-container {
@@ -184,36 +179,58 @@
 
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="/">Home</a>    
-    <a href="/Founder/">Founder</a>
-    <a href="/Services/">Services</a>
-    <a href="/Resources/">Resources</a>
-    <a href="/Contact Us/">Contact</a>
-  </nav>
+<nav>
+  <a href="/">Home</a>
+  <a href="/Founder/">Founder</a>
+  <a href="/Services/">Services</a>
+  <a href="/Resources/">Resources</a>
+  <a href="/Contact Us/">Contact</a>
+</nav>
 
 <header>
   <img src="/images/Candidit-Logo-Dark.png" alt="Logo">
 </header>
+
 <div class="page-title">Candid Musings</div>
 <div class="container" id="postContainer"></div>
 
 <script>
-let allPosts = [];
-
 async function loadPosts() {
-  const res = await fetch('/content/blog/posts.json');
-  allPosts = await res.json();
-  renderPosts(allPosts);
+  try {
+    const res = await fetch('/content/blog/posts.json');
+    const posts = await res.json();
+
+    for (const post of posts) {
+      const mdRes = await fetch(`/content/blog/${post.filename}`);
+      const mdText = await mdRes.text();
+
+      const cleaned = mdText.replace(/^---[\s\S]*?---/, "").trim();
+
+      // extract first image
+      const imgMatch = cleaned.match(/!\[.*?\]\((.*?)\)/);
+      post.image = imgMatch ? imgMatch[1] : "/images/default-blog.jpg";
+
+      // excerpt without image markdown
+      post.excerpt = cleaned
+        .replace(/!\[.*?\]\((.*?)\)/g, "")
+        .replace(/\n/g, " ")
+        .substring(0, 180) + "...";
+    }
+
+    renderPosts(posts);
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById("postContainer").innerHTML =
+      "<p>Error loading blog posts.</p>";
+  }
 }
 
 function renderPosts(posts) {
-  const container = document.getElementById('postContainer');
+  const container = document.getElementById("postContainer");
   container.innerHTML = "";
 
   posts.forEach(post => {
-
     const slug = (post.filename || "")
       .replace(".md", "")
       .trim()
@@ -227,17 +244,14 @@ function renderPosts(posts) {
         <div class="post-title">${post.title || ""}</div>
         <div class="post-meta">${post.date || ""}</div>
         <div class="post-excerpt">${post.excerpt || ""}</div>
-
-        <a class="read-more"
-           href="/blog/post?slug=${slug}">
+        <a class="read-more" href="/blog/post?slug=${slug}">
           Read more →
         </a>
       </div>
 
-      <img class="post-image" src="https://via.placeholder.com/150">
+      <img class="post-image" src="${post.image}">
     `;
 
-    // ENTIRE CARD CLICK (safe, no .html usage)
     div.addEventListener("click", () => {
       window.location.href = `/blog/post?slug=${slug}`;
     });
@@ -249,30 +263,26 @@ function renderPosts(posts) {
 loadPosts();
 </script>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+<footer class="site-footer">
   <div class="footer-container">
 
-    <!-- LEFT: SOCIAL LINKS -->
     <div class="footer-column">
       <h3>Follow Me</h3>
-      <a href="www.linkedin.com/in/richardngcy" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/richardngcy" target="_blank">LinkedIn</a>
       <a href="https://www.instagram.com/yourprofile" target="_blank">Instagram</a>
       <a href="https://www.tiktok.com/@yourprofile" target="_blank">TikTok</a>
     </div>
 
-    <!-- CENTER: SITE MAP -->
     <div class="footer-column">
       <h3>Site Map</h3>
-        <a href="/">Home</a>
-        <a href="/Founder/">Meet The Founder</a>
-        <a href="/blog/">Musings</a>   
-        <a href="/Services/">Services</a>
-        <a href="/Resources/">Resources</a>
-        <a href="/Contact Us/">Contact</a>
+      <a href="/">Home</a>
+      <a href="/Founder/">Meet The Founder</a>
+      <a href="/blog/">Musings</a>
+      <a href="/Services/">Services</a>
+      <a href="/Resources/">Resources</a>
+      <a href="/Contact Us/">Contact</a>
     </div>
 
-    <!-- RIGHT: CONTACT -->
     <div class="footer-column">
       <h3>Contact</h3>
       <p>Email:<br>
@@ -287,7 +297,6 @@ loadPosts();
 
   <p class="footer-bottom">© 2025 Candidit Consulting</p>
 </footer>
-
 
 </body>
 </html>

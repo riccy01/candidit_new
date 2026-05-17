@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog Post</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
     body {
@@ -38,17 +40,77 @@
 
     .content {
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .content h1 {
-      font-size: 28px;
-      margin-top: 20px;
+      font-size: 30px;
+      margin-top: 30px;
+      margin-bottom: 12px;
     }
 
     .content h2 {
-      font-size: 22px;
-      margin-top: 18px;
+      font-size: 24px;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
+    .content h3 {
+      font-size: 20px;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    .content p {
+      margin: 16px 0;
+    }
+
+    .content ul,
+    .content ol {
+      padding-left: 24px;
+      margin: 16px 0;
+    }
+
+    .content li {
+      margin: 8px 0;
+    }
+
+    .content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 24px 0;
+      display: block;
+    }
+
+    .content a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .content a:hover {
+      text-decoration: underline;
+    }
+
+    .content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 16px;
+      margin: 20px 0;
+      color: #666;
+    }
+
+    .content code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+
+    .content pre {
+      background: #f4f4f4;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
     }
   </style>
 </head>
@@ -70,16 +132,12 @@
 
   <script>
     async function loadPost() {
-
       const params = new URLSearchParams(window.location.search);
       const slug = params.get("slug");
 
-      console.log("URL:", window.location.href);
-      console.log("SLUG:", slug);
-
       if (!slug) {
         document.getElementById("title").innerText = "Post not found";
-        document.getElementById("content").innerText = "Missing slug in URL.";
+        document.getElementById("content").innerText = "Missing slug.";
         return;
       }
 
@@ -87,14 +145,12 @@
         const res = await fetch("/content/blog/posts.json");
         const posts = await res.json();
 
-        const post = posts.find(p => {
-          const fileSlug = (p.filename || "")
+        const post = posts.find(p =>
+          (p.filename || "")
             .replace(".md", "")
             .trim()
-            .toLowerCase();
-
-          return fileSlug === slug.trim().toLowerCase();
-        });
+            .toLowerCase() === slug.trim().toLowerCase()
+        );
 
         if (!post) {
           document.getElementById("title").innerText = "Post not found";
@@ -108,14 +164,9 @@
         const mdRes = await fetch(`/content/blog/${post.filename}`);
         const mdText = await mdRes.text();
 
-        // ✅ STRIP FRONTMATTER (IMPORTANT FIX)
-        const cleaned = mdText.replace(/---[\s\S]*?---/, "").trim();
+        const cleaned = mdText.replace(/^---[\s\S]*?---/, "").trim();
 
-        // SIMPLE MARKDOWN RENDERING
-        const html = cleaned
-          .replace(/^# (.*$)/gm, "<h1>$1</h1>")
-          .replace(/^## (.*$)/gm, "<h2>$1</h2>")
-          .replace(/\n\n/g, "<br><br>");
+        const html = marked.parse(cleaned);
 
         document.getElementById("content").innerHTML = html;
 
