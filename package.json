@@ -2,7 +2,7 @@
   "name": "candidit_new",
   "version": "1.0.0",
   "scripts": {
-    "build": "node generate-posts-json.js"
+    "build": "node scripts/generate-index.js"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.5"
