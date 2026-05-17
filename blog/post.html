@@ -130,55 +130,65 @@
 
   </div>
 
-  <script>
-    async function loadPost() {
-      const params = new URLSearchParams(window.location.search);
-      const slug = params.get("slug");
+<script>
+async function loadPost() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
 
-      if (!slug) {
-        document.getElementById("title").innerText = "Post not found";
-        document.getElementById("content").innerText = "Missing slug.";
-        return;
-      }
+  const titleEl = document.getElementById("title");
+  const metaEl = document.getElementById("meta");
+  const contentEl = document.getElementById("content");
 
-      try {
-        const res = await fetch("/content/blog/posts.json");
-        const posts = await res.json();
+  if (!slug) {
+    titleEl.innerText = "Post not found";
+    contentEl.innerText = "Missing slug.";
+    return;
+  }
 
-        const post = posts.find(p =>
-          (p.filename || "")
-            .replace(".md", "")
-            .trim()
-            .toLowerCase() === slug.trim().toLowerCase()
-        );
+  try {
+    // 1. Load index.json (single source of truth)
+    const res = await fetch("/content/blog/index.json");
+    const posts = await res.json();
 
-        if (!post) {
-          document.getElementById("title").innerText = "Post not found";
-          document.getElementById("content").innerText = "No matching post found.";
-          return;
-        }
+    // 2. Find matching post
+    const post = posts.find(p =>
+      (p.slug || p.filename || "")
+        .replace(".md", "")
+        .trim()
+        .toLowerCase() === slug.trim().toLowerCase()
+    );
 
-        document.getElementById("title").innerText = post.title || "Untitled";
-        document.getElementById("meta").innerText = post.date || "";
-
-        const mdRes = await fetch(`/content/blog/${post.filename}`);
-        const mdText = await mdRes.text();
-
-        const cleaned = mdText.replace(/^---[\s\S]*?---/, "").trim();
-
-        const html = marked.parse(cleaned);
-
-        document.getElementById("content").innerHTML = html;
-
-      } catch (err) {
-        console.error(err);
-        document.getElementById("title").innerText = "Error loading post";
-        document.getElementById("content").innerText = err.message;
-      }
+    if (!post) {
+      titleEl.innerText = "Post not found";
+      contentEl.innerText = "No matching post found.";
+      return;
     }
 
-    loadPost();
-  </script>
+    // 3. Set title + meta
+    titleEl.innerText = post.title || "Untitled";
+    metaEl.innerText = post.date || "";
+
+    // 4. Load markdown file
+    const mdRes = await fetch(`/content/blog/${post.filename}`);
+    const mdText = await mdRes.text();
+
+    // 5. Remove frontmatter
+    const cleaned = mdText.replace(/^---[\s\S]*?---/, "").trim();
+
+    // 6. Convert markdown → HTML (requires marked.js)
+    const html = marked.parse(cleaned);
+
+    contentEl.innerHTML = html;
+
+  } catch (err) {
+    console.error(err);
+    titleEl.innerText = "Error loading post";
+    contentEl.innerText = err.message;
+  }
+}
+
+loadPost();
+</script>
 
 </body>
 </html>

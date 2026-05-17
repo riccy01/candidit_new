@@ -197,7 +197,7 @@
 <script>
 async function loadPosts() {
   try {
-    const res = await fetch('/content/blog/posts.json');
+    const res = await fetch('/content/blog/index.json');
     const posts = await res.json();
 
     for (const post of posts) {
