@@ -1,19 +1,25 @@
 module.exports = function(eleventyConfig) {
 
-  // Copy static folders directly to _site
-  eleventyConfig.addPassthroughCopy("images");   // your images
-  eleventyConfig.addPassthroughCopy("videos");   // optional videos folder
+  // Core website assets
+  eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("videos");
 
-  // You can add other passthrough files if needed
-  // eleventyConfig.addPassthroughCopy("css");
-  // eleventyConfig.addPassthroughCopy("js");
+  // Blog/content media
+  eleventyConfig.addPassthroughCopy("assets/images");
+  eleventyConfig.addPassthroughCopy("assets/videos");
+
+  // Blog data and Markdown files
+  eleventyConfig.addPassthroughCopy("content/blog/index.json");
+  eleventyConfig.addPassthroughCopy("content/blog/*.md");
+
+  // CMS configuration
+  eleventyConfig.addPassthroughCopy("admin/config.yml");
 
   return {
     dir: {
-      input: ".",       // source folder is candidit_new root
-      output: "_site",  // generated site goes here
+      input: ".",
+      output: "_site",
     },
-    // Enable HTML output pretty formatting (optional)
     htmlTemplateEngine: "liquid",
     markdownTemplateEngine: "liquid"
   };

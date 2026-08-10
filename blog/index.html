@@ -244,7 +244,7 @@ function renderPosts(posts) {
         <div class="post-title">${post.title || ""}</div>
         <div class="post-meta">${post.date || ""}</div>
         <div class="post-excerpt">${post.excerpt || ""}</div>
-        <a class="read-more" href="/blog/post?slug=${slug}">
+        <a class="read-more" href="/blog/post/?slug=${slug}">
           Read more →
         </a>
       </div>
@@ -253,7 +253,7 @@ function renderPosts(posts) {
     `;
 
     div.addEventListener("click", () => {
-      window.location.href = `/blog/post?slug=${slug}`;
+      window.location.href = `/blog/post/?slug=${slug}`;
     });
 
     container.appendChild(div);
