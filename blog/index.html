@@ -226,6 +226,20 @@ async function loadPosts() {
   }
 }
 
+function formatDate(dateString) {
+  if (!dateString) return "";
+
+  const date = new Date(dateString);
+
+  if (isNaN(date)) return dateString;
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
+
 function renderPosts(posts) {
   const container = document.getElementById("postContainer");
   container.innerHTML = "";
@@ -242,7 +256,7 @@ function renderPosts(posts) {
     div.innerHTML = `
       <div>
         <div class="post-title">${post.title || ""}</div>
-        <div class="post-meta">${post.date || ""}</div>
+        <div class="post-meta">${formatDate(post.date)}</div>
         <div class="post-excerpt">${post.excerpt || ""}</div>
         <a class="read-more" href="/blog/post/?slug=${slug}">
           Read more →

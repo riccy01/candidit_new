@@ -7,17 +7,25 @@ const files = fs.readdirSync(blogDir)
   .filter(f => f.endsWith(".md"));
 
 const posts = files.map(file => {
-  const content = fs.readFileSync(path.join(blogDir, file), "utf8");
+  const content = fs.readFileSync(
+    path.join(blogDir, file),
+    "utf8"
+  );
 
-  const titleMatch = content.match(/title:\s*(.*)/);
-  const dateMatch = content.match(/date:\s*(.*)/);
+  const titleMatch = content.match(/^title:\s*(.+)$/m);
+  const dateMatch = content.match(/^date:\s*(.+)$/m);
 
   return {
     filename: file,
-    slug: file.replace(".md", ""),
-    title: titleMatch ? titleMatch[1] : "Untitled",
-    date: dateMatch ? dateMatch[1] : ""
+    slug: file.replace(/\.md$/, ""),
+    title: titleMatch ? titleMatch[1].trim() : "Untitled",
+    date: dateMatch ? dateMatch[1].trim() : ""
   };
+});
+
+// Sort newest posts first
+posts.sort((a, b) => {
+  return new Date(b.date) - new Date(a.date);
 });
 
 fs.writeFileSync(
