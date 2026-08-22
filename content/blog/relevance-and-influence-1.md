@@ -1,6 +1,6 @@
 ---
 title: Relevance and Influence
-date: 2026-08-22T10:13:07.928Z
+date: 2026-07-21T10:13:07.928Z
 ---
 Had a session with my mentoring circle today and some revolving themes that came up as we discussed career goals and expectations of the mentoring session were the desire to grow in knowledge and competency as well as to find purpose and meaning in what we do.\
 \
