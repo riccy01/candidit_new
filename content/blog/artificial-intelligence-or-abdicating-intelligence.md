@@ -2,6 +2,8 @@
 title: Artificial Intelligence or Abdicating Intelligence
 date: 2026-08-22T09:36:55.329Z
 ---
+![](/assets/images/preparing-the-child-for-the-road.jpg)
+
 In the last few years, AI has taken the world by storm changing the way we live, work and think. As a frequent user of AI tools like ChatGPT, Claude, Copilot and such, I must confess I am still pretty much a novice when it comes to really pushing what AI can do for us. But in the recent months, something has been slowly eating away at my mind over how work and the workplace is evolving.
 
 As companies expect employees to improve productivity with AI not just incrementally but exponentially. A new generation of KPIs and behaviors are being observed. Terms like token spend and tokenmaxxing have become a new lingo. Vibe coding is enabling wannabes like me to build stuff without any software fundamentals. AI content creation is revolutionizing media, advertising space with vibrant content being generated in minutes as opposed to days, months or years. Creativity is unleashed with a vengeance as any script can be converted into an animation or artwork. Wow! How the world   has changed. 
@@ -16,4 +18,4 @@ When business analysts cannot explain why dashboards or functions are designed i
 
 AI should remain as Artificial Intelligence to augment the human and hopefully never regress into Abdicating Intelligence which outsources all human judgement.
 
-![](/assets/images/ai-vs-ai.jpg)
+![]()
