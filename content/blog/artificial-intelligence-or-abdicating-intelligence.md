@@ -2,7 +2,7 @@
 title: Artificial Intelligence or Abdicating Intelligence
 date: 2026-08-22T09:36:55.329Z
 ---
-![](/assets/images/preparing-the-child-for-the-road.jpg)
+![](/assets/images/ai-vs-ai.jpg)
 
 In the last few years, AI has taken the world by storm changing the way we live, work and think. As a frequent user of AI tools like ChatGPT, Claude, Copilot and such, I must confess I am still pretty much a novice when it comes to really pushing what AI can do for us. But in the recent months, something has been slowly eating away at my mind over how work and the workplace is evolving.
 
