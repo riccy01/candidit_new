@@ -2,6 +2,8 @@
 title: "Prepare for the Road "
 date: 2026-10-05T06:19:54.822Z
 ---
+![](/assets/images/preparing-the-child-for-the-road.jpg)
+
 ***"﻿Prepare the Child for the Road not the Road for the Child"***
 
 Came across this today and found it highly relevant not just in parenting but also in #Leadership and #Succession planning and preparation. In my conversations with my mentees, staff, peers and friends, I often come across the comment that “it is faster if I were to do it myself” or “they have not done this before, it is ok, I can do it for them this time” or something along these lines. And each time I hear this I am gently reminded of what my kids’ primary school Principal use to say - “Do not do for them what they can do themselves and do not do for them what they can almost do by themselves”
@@ -11,5 +13,3 @@ In essence, the next generation needs to learn for themselves the important less
 But what stood out from the phrase today as I listened on wasn’t so much about ***“NOT”*** preparing the road for the child but rather what are we doing to prepare the next generation for the road.
 
 This is not just applicable to parenting, but as leaders, supervisors, managers, what are we doing to prepare the next generation for the role ahead. Many of us start our careers as Individual Contributors to organisations and then fumble our way up the career ladder into managerial or leadership roles. Some of these roles require us to demonstrate skills that were never taught to us in school or told to us in the course of our work. Skills like emotional intelligence, effective communications, negotiations, time management, critical thinking, problem solving etc. When we put someone in a greater role, what do we do to help the individual into the new responsibilities. Do we set them up to succeed or are we setting people up for failure? In work, sometimes we fail to recognise that as we move up the ladder we are more engaged in a team sport and whilst individual performance is still important and valued, it is more important to have a high performance team than to have a single superstar diva. Helping the next generation level up to assume greater responsibilities is our generational responsibility and if we do it well, they will do theirs better. This applies not just to my generation but every generation as we hope the next to be better than ourselves.
-
-![](/assets/images/preparing-the-child-for-the-road.jpg)
