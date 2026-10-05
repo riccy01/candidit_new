@@ -1,6 +1,6 @@
 ---
 title: Resilience and Resourcefulness
-date: 2026-08-23T13:34:43.456Z
+date: 2026-09-15T13:34:43.456Z
 ---
 For several years now I have been talking about 𝗥&𝗥. No, not really Rest and Recreation (although I could really do with some 😜) but rather 𝗥𝗲𝘀𝗶𝗹𝗶𝗲𝗻𝗰𝗲 and 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝗳𝘂𝗹𝗻𝗲𝘀𝘀.\
 \
