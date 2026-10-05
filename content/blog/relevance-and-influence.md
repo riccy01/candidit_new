@@ -2,6 +2,8 @@
 title: "Relevance and Influence "
 date: 2026-07-21T10:15:40.195Z
 ---
+![](/assets/images/relevance-and-influence.jpg)
+
 Had a session with my mentoring circle today and some revolving themes that came up as we discussed career goals and expectations of the mentoring session were the desire to grow in knowledge and competency as well as to find purpose and meaning in what we do.\
 \
 I kind of boiled it down to 2 words - [hashtag#Relevance](https://www.linkedin.com/search/results/all/?keywords=%23relevance&origin=HASH_TAG_FROM_FEED) & [hashtag#Influence](https://www.linkedin.com/search/results/all/?keywords=%23influence&origin=HASH_TAG_FROM_FEED)\
@@ -15,5 +17,3 @@ Just a little illustrated takeaway for my mentorship circle, Raja Moorthy Karapa
 [hashtag#candidit](https://www.linkedin.com/search/results/all/?keywords=%23candidit&origin=HASH_TAG_FROM_FEED)\
 [hashtag#mentorship](https://www.linkedin.com/search/results/all/?keywords=%23mentorship&origin=HASH_TAG_FROM_FEED)\
 [hashtag#teamcoaching](https://www.linkedin.com/search/results/all/?keywords=%23teamcoaching&origin=HASH_TAG_FROM_FEED)
-
-![](/assets/images/relevance-and-influence.jpg)
