@@ -12,10 +12,8 @@ I used to talk to developers and ask them to consider using tools to help them s
 
 AI has given the world a lot. A lot for the better I would think but at the same time I am also starting to be a bit more weary and a lot more wary. Weary of content that are starting to look out of the can and duplicative. Wary as I look at a growing cohort who is building more and more black boxes to do things without understanding how what goes into the black boxes.
 
-If engineers start to be overly dependent on AI to do the ground work, where to they learn the foundations of engineering. If developers continue to vibe code, at what point to they forget how to code and troubleshoot issues and vulnerabilities. AI is replacing the simple tasks and making a lot of entry level jobs feel redundant. But how do we grow the next generation of thinkers  and leaders if they are never given the opportunity to grow from ground up through experiential learning.
+If engineers start to be overly dependent on AI to do the groundwork, where to they learn the foundations of engineering. If developers continue to vibe code, at what point to they forget how to code and troubleshoot issues and vulnerabilities. AI is replacing the simple tasks and making a lot of entry level jobs feel redundant. But how do we grow the next generation of thinkers  and leaders if they are never given the opportunity to grow from ground up through experiential learning.
 
 When business analysts cannot explain why dashboards or functions are designed in a certain way, when software developers cannot debug code that is written on their behalf by a machine, when the strategy and product teams can no longer come up with anything differentiated, that is a world to be really worried about.
 
 AI should remain as Artificial Intelligence to augment the human and hopefully never regress into Abdicating Intelligence which outsources all human judgement.
-
-![]()
